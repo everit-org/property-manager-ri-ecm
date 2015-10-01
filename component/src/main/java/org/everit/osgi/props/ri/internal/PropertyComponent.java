@@ -50,19 +50,19 @@ import aQute.bnd.annotation.headers.ProvideCapability;
 @StringAttributes({
     @StringAttribute(attributeId = Constants.SERVICE_DESCRIPTION,
         defaultValue = PropertyConstants.DEFAULT_SERVICE_DESCRIPTION,
-        priority = PropertyComponent.PRIORITY_01_SERVICE_DESCRITION,
+        priority = PropertyComponent.P01_SERVICE_DESCRITION,
         label = "Service Description",
         description = "The description of this component configuration. It is used to easily "
             + "identify the service registered by this component.") })
 public class PropertyComponent {
 
-  public static final int PRIORITY_01_SERVICE_DESCRITION = 1;
+  public static final int P01_SERVICE_DESCRITION = 1;
 
-  public static final int PRIORITY_02_QUERYDSL_SUPPORT = 2;
+  public static final int P02_QUERYDSL_SUPPORT = 2;
 
-  public static final int PRIORITY_03_TRANSACTION_PROPAGATOR = 3;
+  public static final int P03_TRANSACTION_PROPAGATOR = 3;
 
-  public static final int PRIORITY_04_CACHE = 4;
+  public static final int P04_CACHE = 4;
 
   private ConcurrentMap<String, String> cache;
 
@@ -97,7 +97,7 @@ public class PropertyComponent {
   }
 
   @ServiceRef(attributeId = PropertyConstants.PROP_CACHE_TARGET,
-      defaultValue = PropertyConstants.DEFAULT_CACHE_TARGET, attributePriority = PRIORITY_04_CACHE,
+      defaultValue = PropertyConstants.DEFAULT_CACHE_TARGET, attributePriority = P04_CACHE,
       label = "Cache filter",
       description = "The OSGi filter expression to select the right Cache "
           + "(java.util.concurrent.ConcurrentMap).")
@@ -106,14 +106,14 @@ public class PropertyComponent {
   }
 
   @ServiceRef(attributeId = PropertyConstants.PROP_QUERYDSL_SUPPORT_TARGET, defaultValue = "",
-      attributePriority = PRIORITY_02_QUERYDSL_SUPPORT, label = "Querydsl Support OSGi filter",
+      attributePriority = P02_QUERYDSL_SUPPORT, label = "Querydsl Support OSGi filter",
       description = "OSGi Service filter expression for QueryDSLSupport instance.")
   public void setQuerydslSupport(final QuerydslSupport querydslSupport) {
     this.querydslSupport = querydslSupport;
   }
 
   @ServiceRef(attributeId = PropertyConstants.PROP_TRANSACTION_HELPER_TARGET, defaultValue = "",
-      attributePriority = PRIORITY_03_TRANSACTION_PROPAGATOR,
+      attributePriority = P03_TRANSACTION_PROPAGATOR,
       label = "Transaction Propagator OSGi filter",
       description = "OSGi Service filter expression for TransactionPropagator instance.")
   public void setTransactionPropagator(final TransactionPropagator transactionPropagator) {
