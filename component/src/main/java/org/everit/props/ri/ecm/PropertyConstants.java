@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.everit.osgi.props.ri;
+package org.everit.props.ri.ecm;
 
 /**
  * Constants of the Property component.
