@@ -24,11 +24,12 @@ import org.everit.osgi.ecm.annotation.Component;
 import org.everit.osgi.ecm.annotation.ConfigurationPolicy;
 import org.everit.osgi.ecm.annotation.Deactivate;
 import org.everit.osgi.ecm.annotation.ManualService;
+import org.everit.osgi.ecm.annotation.ManualServices;
 import org.everit.osgi.ecm.annotation.ServiceRef;
 import org.everit.osgi.ecm.annotation.attribute.StringAttribute;
 import org.everit.osgi.ecm.annotation.attribute.StringAttributes;
 import org.everit.osgi.ecm.component.ComponentContext;
-import org.everit.osgi.ecm.extender.ECMExtenderConstants;
+import org.everit.osgi.ecm.extender.ExtendComponent;
 import org.everit.persistence.querydsl.support.QuerydslSupport;
 import org.everit.props.PropertyManager;
 import org.everit.props.ri.PropertyManagerImpl;
@@ -37,17 +38,14 @@ import org.everit.transaction.propagator.TransactionPropagator;
 import org.osgi.framework.Constants;
 import org.osgi.framework.ServiceRegistration;
 
-import aQute.bnd.annotation.headers.ProvideCapability;
-
 /**
  * ECM component for {@link PropertyManager} interface based on {@link PropertyManagerImpl}.
  */
+@ExtendComponent
 @Component(componentId = PropertyConstants.SERVICE_FACTORY_PID_PROPERTY_MANAGER,
     configurationPolicy = ConfigurationPolicy.FACTORY, label = "Everit Property Manager",
     description = "By configuring this component, the user will get a persistent PropertyManager "
         + "as an OSGi service.")
-@ProvideCapability(ns = ECMExtenderConstants.CAPABILITY_NS_COMPONENT,
-    value = ECMExtenderConstants.CAPABILITY_ATTR_CLASS + "=${@class}")
 @StringAttributes({
     @StringAttribute(attributeId = Constants.SERVICE_DESCRIPTION,
         defaultValue = PropertyConstants.DEFAULT_SERVICE_DESCRIPTION,
@@ -55,7 +53,7 @@ import aQute.bnd.annotation.headers.ProvideCapability;
         label = "Service Description",
         description = "The description of this component configuration. It is used to easily "
             + "identify the service registered by this component.") })
-@ManualService(PropertyManager.class)
+@ManualServices(@ManualService(PropertyManager.class))
 public class PropertyComponent {
 
   public static final int P01_SERVICE_DESCRITION = 1;
